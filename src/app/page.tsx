@@ -18,6 +18,7 @@ import { toast } from "sonner"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
 import { getVideoInfo, downloadVideo, VideoInfo } from "@/app/actions/youtube"
+import { Separator } from "../components/ui/separator"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Badge } from "../components/ui/badge"
@@ -110,14 +111,14 @@ const HomePage: FC = () => {
                         <span className="text-foreground">Tube</span>
                     </h1>
                     <p className="text-xs text-foreground text-center">
-                        Baixe vídeos, áudios e músicas do YouTube de graça usando um serviço local.
+                        Download YouTube videos, audios, and music for free using a local service.
                     </p>
                 </CardHeader>
                 <CardContent>
                     <div className="space-y-4">
                         <div className="flex gap-1 items-center text-sm">
                             <LuLink />
-                            <p>Cole ou digite sua URL</p>
+                            <p>Paste or type your URL</p>
                         </div>
                         <div className="flex">
                             <Input
@@ -163,6 +164,7 @@ const HomePage: FC = () => {
                             alt={videoInfo.title}
                             className="rounded-lg"
                         />
+                        <Separator className="my-4" />
                         <h3 className="font-semibold mb-2">Formatos Disponíveis</h3>
                         <div className="grid grid-cols-2 max-xl:grid-cols-1 gap-4">
                             <div className="max-h-[400px] overflow-y-auto px-2">
