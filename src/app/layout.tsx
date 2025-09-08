@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 
 import AppHeader from "../components/layout/application/app-header"
 import AppFooter from "../components/layout/application/app-footer"
+import { Toaster } from "../components/ui/sonner"
 import Providers from "./providers"
 import "./globals.css"
 
@@ -36,6 +37,7 @@ export default function RootLayout({
                 <AppHeader />
                 <Providers>{children}</Providers>
                 <AppFooter />
+                <Toaster />
             </body>
         </html>
     )
