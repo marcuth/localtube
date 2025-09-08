@@ -5,7 +5,7 @@ import ytdl from "@distube/ytdl-core"
 export async function getVideoInfo(url: string) {
     try {
         if (!ytdl.validateURL(url)) {
-            throw new Error("URL inválida do YouTube")
+            throw new Error("Invalid YouTube URL")
         }
 
         const info = await ytdl.getInfo(url)
@@ -57,15 +57,15 @@ export async function getVideoInfo(url: string) {
             formats,
         }
     } catch (error) {
-        console.error("Erro ao obter informações do vídeo:", error)
-        throw new Error("Não foi possível obter as informações do vídeo")
+        console.error("Error getting video information:", error)
+        throw new Error("Unable to get video information")
     }
 }
 
 export async function downloadVideo(url: string, itag: number) {
     try {
         if (!ytdl.validateURL(url)) {
-            throw new Error("URL inválida do YouTube")
+            throw new Error("Invalid YouTube URL")
         }
 
         const stream = ytdl(url, {
@@ -90,13 +90,13 @@ export async function downloadVideo(url: string, itag: number) {
             })
 
             stream.on("error", (error) => {
-                console.error("Erro no stream:", error)
-                reject(new Error("Erro ao baixar o vídeo"))
+                console.error("Error in stream:", error)
+                reject(new Error("Error downloading video"))
             })
         })
     } catch (error) {
-        console.error("Erro ao baixar vídeo:", error)
-        throw new Error("Não foi possível baixar o vídeo")
+        console.error("Error downloading video:", error)
+        throw new Error("Could not download video")
     }
 }
 
