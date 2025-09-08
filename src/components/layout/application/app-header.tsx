@@ -1,4 +1,3 @@
-import { LuDownload } from "react-icons/lu"
 import { FC } from "react"
 
 import ThemeToggle from "@/components/features/theme-toggle"
