@@ -73,7 +73,7 @@ const HomePage: FC = () => {
             window.URL.revokeObjectURL(downloadUrl)
         } catch (error) {
             console.error(error)
-            toast.error("Erro ao baixar o arquivo. Tente novamente.")
+            toast.error("Error downloading file! Please try again.")
         } finally {
             setDownloading(null)
         }
@@ -154,7 +154,7 @@ const HomePage: FC = () => {
                             </span>
                             <span className="flex items-center gap-1">
                                 <LuEye className="h-4 w-4" />
-                                {formatViewCount(videoInfo.viewCount)} visualizações
+                                {formatViewCount(videoInfo.viewCount)} views
                             </span>
                         </CardDescription>
                     </CardHeader>
@@ -165,12 +165,12 @@ const HomePage: FC = () => {
                             className="rounded-lg"
                         />
                         <Separator className="my-4" />
-                        <h3 className="font-semibold mb-2">Formatos Disponíveis</h3>
+                        <h3 className="font-semibold mb-2">Available Formats</h3>
                         <div className="grid grid-cols-2 max-xl:grid-cols-1 gap-4">
                             <div className="max-h-[400px] overflow-y-auto px-2">
                                 <h4 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
                                     <LuVideo className="h-4 w-4" />
-                                    Vídeo (MP4)
+                                    Video (MP4)
                                 </h4>
                                 <div className="grid gap-2">
                                     {videoInfo.formats
@@ -184,9 +184,9 @@ const HomePage: FC = () => {
                                                     <Badge variant="secondary">{format.quality}</Badge>
                                                     <Badge variant={format.hasAudio ? "default" : "secondary"}>
                                                         {format.hasAudio ? (
-                                                            <LuVolume2 title="Com áudio" />
+                                                            <LuVolume2 title="With audio" />
                                                         ) : (
-                                                            <LuVolumeX title="Sem áudio" />
+                                                            <LuVolumeX title="No audio" />
                                                         )}
                                                     </Badge>
                                                     <span className="text-sm text-muted-foreground">
@@ -203,7 +203,7 @@ const HomePage: FC = () => {
                                                     ) : (
                                                         <>
                                                             <LuDownload className="h-4 w-4 mr-2" />
-                                                            Baixar
+                                                            Download
                                                         </>
                                                     )}
                                                 </Button>
@@ -214,7 +214,7 @@ const HomePage: FC = () => {
                             <div className="max-h-[400px] overflow-y-auto px-2">
                                 <h4 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
                                     <LuMusic className="h-4 w-4" />
-                                    Áudio (MP3)
+                                    Audio (MP3)
                                 </h4>
                                 <div className="grid gap-2">
                                     {videoInfo.formats
@@ -241,7 +241,7 @@ const HomePage: FC = () => {
                                                     ) : (
                                                         <>
                                                             <LuDownload className="h-4 w-4 mr-2" />
-                                                            Baixar
+                                                            Download
                                                         </>
                                                     )}
                                                 </Button>
