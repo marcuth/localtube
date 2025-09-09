@@ -102,6 +102,22 @@ export async function downloadVideo(url: string, itag: number) {
     }
 }
 
+export async function downloadThumbnail(url: string) {
+    try {
+        const response = await fetch(url)
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch thumbnail")
+        }
+
+        const arrayBuffer = await response.arrayBuffer()
+        return Buffer.from(arrayBuffer)
+    } catch (error) {
+        console.error("Error downloading thumbnail:", error)
+        throw new Error("Could not download thumbnail")
+    }
+}
+
 export type VideoFormat = {
     itag: number
     quality:
