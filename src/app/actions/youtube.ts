@@ -23,13 +23,15 @@ export async function getVideoInfo(url: string) {
             }))
             .reduce((acc, curr) => {
                 const exists = acc.find(
-                    (f: VideoFormat) =>
-                        f.quality === curr.quality &&
-                        f.container === curr.container &&
-                        f.hasAudio === curr.hasAudio &&
-                        f.hasVideo === curr.hasVideo,
+                    (format: VideoFormat) =>
+                        format.quality === curr.quality &&
+                        format.container === curr.container &&
+                        format.hasAudio === curr.hasAudio &&
+                        format.hasVideo === curr.hasVideo,
                 )
+
                 if (!exists) acc.push(curr)
+
                 return acc
             }, [] as VideoFormat[])
             .sort((a, b) => {
