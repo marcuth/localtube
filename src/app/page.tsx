@@ -18,10 +18,10 @@ import { toast } from "sonner"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
 import { getVideoInfo, downloadVideo, VideoInfo } from "@/app/actions/youtube"
-import { Separator } from "../components/ui/separator"
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Badge } from "../components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
 
 const HomePage: FC = () => {
     const [url, setUrl] = useState("")
@@ -162,7 +162,7 @@ const HomePage: FC = () => {
                         <img
                             src={videoInfo.thumbnail || "/placeholder.svg"}
                             alt={videoInfo.title}
-                            className="rounded-lg"
+                            className="rounded-lg w-full"
                         />
                         <Separator className="my-4" />
                         <h3 className="font-semibold mb-2">Available Formats</h3>
