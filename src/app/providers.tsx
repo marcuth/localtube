@@ -8,7 +8,7 @@ type Props = {
 const Providers: FC<Props> = async ({ children }) => {
     return (
         <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system" themes={["light", "dark"]}>
-            <main className="w-full py-6 px-4 min-h-screen">{children}</main>
+            {children}
         </ThemeProvider>
     )
 }
