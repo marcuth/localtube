@@ -16,8 +16,8 @@ import { FC, useState } from "react"
 
 import { toast } from "sonner"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
-import { getVideoInfo, downloadVideo, VideoInfo } from "@/app/actions/youtube"
+import { getVideoInfo, downloadVideo, VideoInfo, downloadThumbnail } from "@/app/actions/youtube"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -102,6 +102,27 @@ const HomePage: FC = () => {
         return num.toString()
     }
 
+    const handleDownloadThumbnail = async () => {
+        try {
+            if (!videoInfo?.thumbnail) return
+            const response = await downloadThumbnail(videoInfo.thumbnail)
+
+            const blob = new Blob([new Uint8Array(response)], { type: "image/jpeg" })
+            const downloadUrl = window.URL.createObjectURL(blob)
+
+            const link = document.createElement("a")
+            link.href = downloadUrl
+            link.download = `${videoInfo.title.replace(/[^a-zA-Z0-9]/g, "_")}_thumbnail.jpg`
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            window.URL.revokeObjectURL(downloadUrl)
+        } catch (error) {
+            console.error(error)
+            toast.error("Erro ao baixar thumbnail!")
+        }
+    }
+
     return (
         <div className="w-full max-w-5xl mx-auto space-y-6 pb-6">
             <Card className="space-y-6">
@@ -164,6 +185,14 @@ const HomePage: FC = () => {
                             alt={videoInfo.title}
                             className="rounded-lg w-full"
                         />
+                        {videoInfo.thumbnail && (
+                            <div className="flex justify-end mt-2">
+                                <Button size="sm" variant="outline" onClick={handleDownloadThumbnail}>
+                                    <LuDownload className="h-4 w-4" />
+                                    Download Thumbnail
+                                </Button>
+                            </div>
+                        )}
                         <Separator className="my-4" />
                         <h3 className="font-semibold mb-2">Available Formats</h3>
                         <div className="grid grid-cols-2 max-xl:grid-cols-1 gap-4">
@@ -202,7 +231,7 @@ const HomePage: FC = () => {
                                                         <LuLoader className="h-4 w-4 animate-spin" />
                                                     ) : (
                                                         <>
-                                                            <LuDownload className="h-4 w-4 mr-2" />
+                                                            <LuDownload className="h-4 w-4" />
                                                             Download
                                                         </>
                                                     )}
@@ -240,7 +269,7 @@ const HomePage: FC = () => {
                                                         <LuLoader className="h-4 w-4 animate-spin" />
                                                     ) : (
                                                         <>
-                                                            <LuDownload className="h-4 w-4 mr-2" />
+                                                            <LuDownload className="h-4 w-4" />
                                                             Download
                                                         </>
                                                     )}
