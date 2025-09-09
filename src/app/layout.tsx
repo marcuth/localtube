@@ -36,9 +36,7 @@ export default function RootLayout({
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <Providers>
                     <AppHeader />
-                    <main className="w-full py-6 px-4 min-h-screen">
-                        {children}
-                    </main>
+                    <main className="w-full py-6 px-4 min-h-screen">{children}</main>
                     <AppFooter />
                     <Toaster />
                 </Providers>
